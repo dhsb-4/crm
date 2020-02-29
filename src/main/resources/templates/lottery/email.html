@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>用户添加</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>新增用户信息 <i class="fa fa-user"></i></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="clearfix"></div>
+                        <form class="form-horizontal form-label-left" th:action="@{/user/save}" action="/user/save"
+                              method="post">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="l_Name"> 用户名 <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="l_Name" class="form-control col-md-7 col-xs-12"
+                                           data-validate-length-range="10" data-validate-words="1" name="l_Name"
+                                           required="required"
+                                           placeholder="请输入用户名" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="l_Password"> 密码 <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="l_Password" class="form-control col-md-7 col-xs-12"
+                                           data-validate-length-range="10" data-validate-words="1" name="l_Password"
+                                           required="required"
+                                           placeholder="请输入密码" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="l_Eamil"> 邮箱 <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="l_Eamil" class="form-control col-md-7 col-xs-12"
+                                           data-validate-length-range="10" data-validate-words="1" name="l_Eamil"
+                                           required="required"
+                                           placeholder="请输入邮箱" type="text">
+                                </div>
+                                <a class="control-label col-md-3 col-sm-3 col-xs-12">发送</a>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="yzm"> 验证码 <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="yzm" class="form-control col-md-7 col-xs-12"
+                                           data-validate-length-range="10" data-validate-words="1" name="yzm"
+                                           required="required"
+                                           placeholder="请输入验证码" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button id="send" type="submit" class="btn btn-success">保存</button>
+                                    <button type="button" class="btn btn-primary" id="back">返回</button>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script layout:fragment="js">
+    $(document).ready(function () {
+        $("#back").on("click", function () {
+            window.history.back();
+        });
+    });
+</script>
+</html>

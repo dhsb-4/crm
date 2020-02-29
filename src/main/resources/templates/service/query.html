@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>用户添加</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>服务归档<i class="fa fa-user"></i></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="clearfix"></div>
+                        <form class="form-horizontal form-label-left" th:action="@{/service/fsave}"
+                              action="/service/fsave"
+                              method="post">
+                            <div class="x_content">
+                                <br>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">编号：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrId" name="svrId" readonly="readonly"
+                                           th:value="${service.svrId}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">服务类型：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrType" readonly="readonly"
+                                           name="svrType" th:value="${service.svrType}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">概要：</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrTitle" readonly="readonly"
+                                           name="svrTitle" th:value="${service.svrTitle}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">客户：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrCustName" readonly="readonly"
+                                           name="svrCustName" th:value="${service.svrCustName}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">状态：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrStatus" readonly="readonly"
+                                           name="svrStatus" th:value="${service.svrStatus}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">服务请求：</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrRequest" readonly="readonly"
+                                           name="svrRequest" th:value="${service.svrRequest}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">创建人：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrCreateBy" readonly="readonly"
+                                           name="svrCreateBy" th:value="${service.svrCreateBy}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">创建时间：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrCreateDate" readonly="readonly"
+                                           name="svrCreateDate"
+                                           th:value="${#dates.format(service.svrCreateDate, 'yyyy-MM-dd')}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">分配给：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrDueTo" readonly="readonly"
+                                           name="svrDueTo" th:value="${service.svrDueTo}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">分配时间：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrDueDate" readonly="readonly"
+                                           name="svrDueDate"
+                                           th:value="${#dates.format(service.svrDueDate, 'yyyy-MM-dd')}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">服务处理：</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrDeal" readonly="readonly"
+                                           name="svrDeal" th:value="${service.svrDeal}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">处理人：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="usrName" readonly="readonly"
+                                           name="usrName" th:value="${user.usrName}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">处理时间：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrDealDate" readonly="readonly"
+                                           name="svrDealDate" th:value="${new java.util.Date()}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">处理结果：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrResult" readonly="readonly"
+                                           name="svrResult" th:value="${service.svrResult}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">满意度：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="svrSatisfy" readonly="readonly"
+                                           name="svrSatisfy" th:value="${svrSatisfy}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button type="button" class="btn btn-primary" id="back">返回</button>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script layout:fragment="js">
+    $(document).ready(function () {
+        $("#back").on("click", function () {
+            window.history.back();
+        });
+
+    });
+</script>
+</html>

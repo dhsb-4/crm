@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>用户添加</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>制定计划<i class="fa fa-user"></i></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="clearfix"></div>
+                        <form class="form-horizontal form-label-left" th:action="@{/plan/save}" action="/plan/save"
+                              method="post">
+                            <div class="x_content">
+                                <br>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">编号：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess1" readonly="readonly"
+                                           name="chcId" th:value="${chance.chcId}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">客户名称：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess2" readonly="readonly"
+                                           name="chcCustName" th:value="${chance.chcCustName}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">负责人：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess3" readonly="readonly"
+                                           name="chcLinkman" th:value="${chance.chcLinkman}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">机会来源：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess4" readonly="readonly"
+                                           name="chcSource" th:value="${chance.chcSource}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">成功几率(%)：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess5" readonly="readonly"
+                                           name="chcRate" th:value="${chance.chcRate}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">公司电话：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess6" readonly="readonly"
+                                           name="chcTel" th:value="${chance.chcTel}">
+                                </div>
+
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">概要：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess7" readonly="readonly"
+                                           name="chcTitle" th:value="${chance.chcTitle}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">机会描述：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess8" readonly="readonly"
+                                           name="chcDesc" th:value="${chance.chcDesc}">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <p class="text-muted font-13 m-b-30"></p>
+                                        <div id="datatable-responsive_wrapper"
+                                             class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <table id="datatable-responsive"
+                                                           class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                                                           cellspacing="0" width="100%" role="grid"
+                                                           aria-describedby="datatable-responsive_info"
+                                                           style="width: 100%;">
+                                                        <thead>
+                                                        <tr role="row">
+                                                            <th class="col-md-3 col-sm-3 col-xs-3" tabindex="0"
+                                                                aria-controls="datatable-responsive" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="First name: activate to sort column descending"
+                                                                aria-sort="ascending">日期
+                                                            </th>
+
+                                                            <th class="col-md-9 col-sm-9 col-xs-9" tabindex="0"
+                                                                aria-controls="datatable-responsive" rowspan="1"
+                                                                colspan="1"
+                                                                aria-label="Last name: activate to sort column ascending">
+                                                                计划项
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr role="row" class="odd" th:each="plan:${plans}">
+                                                            <td th:text="${plan.plaDate}"></td>
+                                                            <td>
+                                                                <input type="text" class="form-control"
+                                                                       id="inputSuccess14" th:value="${plan.plaTodo}"
+                                                                       th:onblur="|doUpd(this,${plan.plaId})|">
+                                                                <button id="sc" type="button" class="btn btn-success"
+                                                                        th:onclick="|doDel(this,${plan.plaId})|">删除
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <button id="send" type="submit" class="btn btn-success">添加</button>
+                                                    <br/>
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">日期：</label>
+                                                    <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                                        <input type="text" class="form-control" id="plaDate"
+                                                               name="plaDate" readonly="readonly"
+                                                               th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm:ss')}">
+                                                    </div>
+
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">计划项：</label>
+                                                    <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                                        <input type="text" class="form-control" id="plaTodo"
+                                                               name="plaTodo">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script layout:fragment="js">
+    $(document).ready(function () {
+        $("#back").on("click", function () {
+            window.history.back();
+        });
+
+    });
+
+    function doUpd(obj, plaId) {
+        $.ajax({
+            type: "POST",
+            url: "/plan/upd",
+            data: {"plaId": plaId, "plaTodo": $(obj).val()},
+            dataType: "json"
+        });
+
+    }
+
+    function doDel(obj, plaId) {
+        if (confirm("你确定需要删除该计划项吗？")) {
+            $.ajax({
+                type: "POST",
+                url: "/plan/del",
+                data: "plaId=" + plaId,
+                dataType: "json",
+                success: function (data) {
+                    if (data.delResult == "true") {//删除成功：移除删除行
+                        alert("删除成功");
+                        $(obj).parents("tr").remove();
+                    }
+                },
+                error: function (data) {
+                    alert("对不起，删除失败");
+                }
+            });
+        }
+    }
+
+</script>
+</html>

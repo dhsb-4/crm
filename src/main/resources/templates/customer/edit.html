@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>用户添加</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>编辑客户信息<i class="fa fa-user"></i></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="clearfix"></div>
+                        <form class="form-horizontal form-label-left" th:action="@{/customer/save}"
+                              action="/customer/editsave"
+                              method="post">
+                            <div class="x_content">
+                                <input type="hidden" class="form-control" id="custId" name="custId"
+                                       th:value="${customer.custId}">
+                                <input type="hidden" class="form-control" id="custLevel" name="custLevel"
+                                       th:value="${customer.custLevel}">
+                                <input type="hidden" class="form-control" id="custManagerId" name="custManagerId"
+                                       th:value="${customer.custManagerId}">
+                                <br>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">客户名称：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custName" name="custName"
+                                           th:value="${customer.custName}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">客户编号：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custNo" name="custNo"
+                                           th:value="${customer.custNo}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">地区：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <select name="custRegion" id="custRegion" class="form-control" required="required">
+                                        <option th:selected="${dict.dictValue eq customer.custRegion}"
+                                                th:each="dict:${dictd}" th:value="${dict.dictValue}"
+                                                th:text="${dict.dictItem}" value="">湖南
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">负责人：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custManagerName" name="custManagerName"
+                                           th:value="${customer.custManagerName}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">客户等级：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <select name="custLevelLabel" id="custLevelLabel" class="form-control"
+                                            required="required">
+                                        <option th:selected="${customer.custLevelLabel eq dict.dictItem}"
+                                                th:each="dict:${dictk}" th:value="${dict.dictItem}"
+                                                th:text="${dict.dictItem}" value="">客户
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">客户信誉度：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <select name="custCredit" id="custCredit" class="form-control" required="required">
+                                        <option value="3" th:selected="${customer.custCredit eq 3}">❤❤❤</option>
+                                        <option value="1" th:selected="${customer.custCredit eq 1}">❤</option>
+                                        <option value="2" th:selected="${customer.custCredit eq 2}">❤❤</option>
+                                        <option value="4" th:selected="${customer.custCredit eq 4}">❤❤❤❤</option>
+                                        <option value="5" th:selected="${customer.custCredit eq 5}">❤❤❤❤❤</option>
+                                    </select>
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">客户满意度：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <select name="custSatisfy" id="custSatisfy" class="form-control"
+                                            required="required">
+                                        <option value="3" th:selected="${customer.custSatisfy eq 3}">❤❤❤</option>
+                                        <option value="1" th:selected="${customer.custSatisfy eq 1}">❤</option>
+                                        <option value="2" th:selected="${customer.custSatisfy eq 2}">❤❤</option>
+                                        <option value="4" th:selected="${customer.custSatisfy eq 4}">❤❤❤❤</option>
+                                        <option value="5" th:selected="${customer.custSatisfy eq 5}">❤❤❤❤❤</option>
+                                    </select>
+                                </div>
+                                <br/>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">地址：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custAddr" name="custAddr"
+                                           th:value="${customer.custAddr}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">邮政编码：</label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                        <input type="text" class="form-control" id="custZip" name="custZip"
+                                               th:value="${customer.custZip}">
+                                    </div>
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">电话：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custTel" name="custTel"
+                                           th:value="${customer.custTel}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">传真：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custFax" name="custFax"
+                                           th:value="${customer.custFax}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">网址：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custWebsite" name="custWebsite"
+                                           th:value="${customer.custWebsite}">
+                                </div>
+
+                                <br/>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">营业执照注册号：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custLicenceNo" name="custLicenceNo"
+                                           th:value="${customer.custLicenceNo}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">法人：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custChieftain" name="custChieftain"
+                                           th:value="${customer.custChieftain}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">注册资金(万元)：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custBankroll" name="custBankroll"
+                                           th:value="${customer.custBankroll}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">年营业额：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custTurnover" name="custTurnover"
+                                           th:value="${customer.custTurnover}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">开户银行：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custBank" name="custBank"
+                                           th:value="${customer.custBank}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">银行账号：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custBankAccount" name="custBankAccount"
+                                           th:value="${customer.custBankAccount}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">地税登记号：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custLocalTaxNo" name="custLocalTaxNo"
+                                           th:value="${customer.custLocalTaxNo}">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">国税登记号：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="custNationalTaxNo"
+                                           name="custNationalTaxNo" th:value="${customer.custNationalTaxNo}">
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button id="send" type="submit" class="btn btn-success">保存</button>
+                                    <button type="button" class="btn btn-primary" id="back">返回</button>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script layout:fragment="js">
+    $(document).ready(function () {
+        $("#back").on("click", function () {
+            window.history.back();
+        });
+
+    });
+
+
+    $(document).submit(function () {
+        if ($("#custName").val() == null || $("#custName").val() == "") {
+            alert("客户名称不能为空");
+            return false;
+        }
+        if ($("#custManagerName").val() == null || $("#custManagerName").val() == "") {
+            alert("负责人不能为空");
+            return false;
+        }
+        if ($("#custAddr").val() == null || $("#custAddr").val() == "") {
+            alert("地址不能为空");
+            return false;
+        }
+        if ($("#custZip").val() == null || $("#custZip").val() == "") {
+            alert("邮政编码不能为空");
+            return false;
+        }
+        if ($("#custTel").val() == null || $("#custTel").val() == "") {
+            alert("电话不能为空");
+            return false;
+        }
+        if ($("#custFax").val() == null || $("#custFax").val() == "") {
+            alert("传真不能为空");
+            return false;
+        }
+        if ($("#custWebsite").val() == null || $("#custWebsite").val() == "") {
+            alert("网址不能为空");
+            return false;
+        }
+        if ($("#custChieftain").val() == null || $("#custChieftain").val() == "") {
+            alert("法人不能为空");
+            return false;
+        }
+        if ($("#custBank").val() == null || $("#custBank").val() == "") {
+            alert("开户银行不能为空");
+            return false;
+        }
+        if ($("#custBankAccount").val() == null || $("#custBankAccount").val() == "") {
+            alert("银行账号不能为空");
+            return false;
+        }
+        return true;
+    })
+</script>
+</html>

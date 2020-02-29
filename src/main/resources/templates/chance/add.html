@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>用户添加</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>新建销售机会<i class="fa fa-user"></i></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="clearfix"></div>
+                        <form class="form-horizontal form-label-left" th:action="@{/chance/save}" action="/chance/save"
+                              method="post">
+                            <div class="x_content">
+                                <input type="hidden" class="form-control" id="inputSuccess10" name="chcStatus"
+                                       value="未分配">
+                                <br>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">客户名称：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess2" name="chcCustName">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">负责人：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess3" name="chcLinkman">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">机会来源：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess4" name="chcSource">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">成功几率(%)：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess5" name="chcRate">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">公司电话：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess6" name="chcTel">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">客户等级：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <select name="custLevelLabel" id="role" class="form-control" required="required">
+                                        <option th:each="dict:${dictk}" th:value="${dict.dictItem}"
+                                                th:text="${dict.dictItem}" value="">客户
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">概要：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <input type="text" class="form-control" id="inputSuccess7" name="chcTitle">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">地区：</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                                    <select name="custRegion" id="roleId" class="form-control" required="required">
+                                        <option th:each="dict:${dictd}" th:value="${dict.dictValue}"
+                                                th:text="${dict.dictItem}" value="">湖南
+                                        </option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">机会描述：</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <textarea class="form-control" rows="3" name="chcDesc"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button id="send" type="submit" class="btn btn-success">保存</button>
+                                    <button type="button" class="btn btn-primary" id="back">返回</button>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script layout:fragment="js">
+    $(document).ready(function () {
+        $("#back").on("click", function () {
+            window.history.back();
+        });
+    });
+
+    $(document).submit(function () {
+        if ($("#inputSuccess2").val() == null || $("#inputSuccess2").val() == "") {
+            alert("客户名称不能为空");
+            return false;
+        }
+        if ($("#inputSuccess3").val() == null || $("#inputSuccess3").val() == "") {
+            alert("负责人不能为空");
+            return false;
+        }
+        if ($("#inputSuccess5").val() == null || $("#inputSuccess5").val() == "") {
+            alert("成功几率(%)不能为空");
+            return false;
+        }
+        if ($("#inputSuccess6").val() == null || $("#inputSuccess6").val() == "") {
+            alert("公司电话不能为空");
+            return false;
+        }
+        if ($("#inputSuccess7").val() == null || $("#inputSuccess7").val() == "") {
+            alert("概要不能为空");
+            return false;
+        }
+        return true;
+    })
+</script>
+</html>

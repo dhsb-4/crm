@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>用户修改</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>修改角色信息 <i class="fa fa-user"></i></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="clearfix"></div>
+                        <form class="form-horizontal form-label-left" th:action="@{/role/save}" action="/role/save"
+                              method="post">
+                            <input type="hidden" name="roleFlag" value="1">
+                            <input type="hidden" name="roleDesc" value="峰">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="roleId"> 编号 <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <input id="roleId" readonly="readonly" class="form-control col-md-7 col-xs-12"
+                                           th:value="${role.roleId}"
+                                           data-validate-length-range="10" data-validate-words="1" name="roleId"
+                                           required="required"
+                                           placeholder="请输入角色名" type="text">
+                                </div>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="roleName"> 角色名 <span
+                                        class="required">*</span>
+                                </label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <input id="roleName" class="form-control col-md-7 col-xs-12"
+                                           th:value="${role.roleName}"
+                                           data-validate-length-range="10" data-validate-words="1" name="roleName"
+                                           required="required"
+                                           placeholder="请输入角色名" type="text">
+                                </div>
+                            </div>
+                            <div class="x_content">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    指定权限
+
+                                    <a href="#" th:onclick="|qx()|" class="btn btn-success btn-sm">全选</a>
+                                    <a href="#" th:onclick="|qbx()|" class="btn btn-success btn-sm">全不选</a>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group" th:each="right:${right}"
+                                         th:if="${right.rightParentCode eq 'ROOT_MENU'}">
+                                        <span th:text="${right.rightText}"></span><input
+                                            th:checked="${right.rightCode eq map[right.rightCode]}"
+                                            th:onclick="|doChec(this)|" type="checkbox" name="rightText"
+                                            th:value="${right.rightCode}"/>
+                                        <div class="form-group" th:each="right1:${right1}"
+                                             th:if="${right.rightCode eq right1.rightParentCode}">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${right1.rightText}"></span><input
+                                                th:checked="${right.rightCode eq map[right.rightCode]}"
+                                                th:onclick="|doZi(this)|" type="checkbox" name="rightText"
+                                                th:value="${right1.rightCode}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button id="send" type="submit" class="btn btn-success">保存</button>
+                                    <button type="button" class="btn btn-primary" id="back">返回</button>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script layout:fragment="js">
+    $(document).ready(function () {
+        $("#back").on("click", function () {
+            window.history.back();
+        });
+    });
+
+    function qx() {
+        var loves = document.getElementsByName("rightText");
+        for (var i = 0; i < loves.length; i++) {
+            loves[i].checked = true;
+        }
+    }
+
+    function qbx() {
+        var loves = document.getElementsByName("rightText");
+        for (var i = 0; i < loves.length; i++) {
+            loves[i].checked = false;
+        }
+    }
+
+    function doChec(obj) {
+        if ($(obj).prop("checked")) {
+            $(obj).nextAll().children("input").prop("checked", true);
+        } else {
+            $(obj).nextAll().children("input").prop("checked", false);
+        }
+    }
+
+    function doZi(obj) {
+        var flag = true;
+        $(obj).parent().parent().children("div").each(function (i, val) {
+            if ($(val).find("input").prop("checked")) {
+
+            } else {
+                flag = false;
+            }
+        })
+        $(obj).parent().parent().find("input").eq(0).prop("checked", flag);
+    }
+</script>
+</html>
